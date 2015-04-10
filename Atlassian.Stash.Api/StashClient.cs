@@ -5,7 +5,7 @@ namespace Atlassian.Stash.Api
 {
     public class StashClient
     {
-        private HttpCommunicationWorker _httpWorker;
+        private readonly HttpCommunicationWorker _httpWorker;
 
         public StashClient(string baseUrl, string base64Auth)
         {
