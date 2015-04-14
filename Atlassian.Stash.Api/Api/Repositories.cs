@@ -7,11 +7,14 @@ namespace Atlassian.Stash.Api.Api
 {
     public class Repositories
     {
-        private const string MANY_REPOSITORIES = "/rest/api/1.0/projects/{0}/repos";
-        private const string ONE_REPOSITORY = "/rest/api/1.0/projects/{0}/repos/{1}";
-        private const string MANY_TAGS = "/rest/api/1.0/projects/{0}/repos/{1}/tags";
-        private const string MANY_FILES = "/rest/api/1.0/projects/{0}/repos/{1}/files";
-        private const string ONE_FILE = "/rest/api/1.0/projects/{0}/repos/{1}/browse/{2}";
+        private const string MANY_REPOSITORIES = "rest/api/1.0/projects/{0}/repos";
+        private const string ONE_REPOSITORY = "rest/api/1.0/projects/{0}/repos/{1}";
+        private const string MANY_TAGS = "rest/api/1.0/projects/{0}/repos/{1}/tags";
+        private const string MANY_FILES = "rest/api/1.0/projects/{0}/repos/{1}/files";
+        private const string ONE_FILE = "rest/api/1.0/projects/{0}/repos/{1}/browse/{2}";
+        private const string GROUP_PERMISSIONS = "rest/api/1.0/projects/{0}/repos/{1}/permissions/groups";
+        private const string USER_PERMISSIONS = "rest/api/1.0/projects/{0}/repos/{1}/permissions/users";
+        private const string BRANCHES = "rest/api/1.0/projects/{0}/repos/{1}/branches";
 
         private HttpCommunicationWorker _httpWorker;
 
@@ -59,6 +62,33 @@ namespace Atlassian.Stash.Api.Api
         {
             string requestUrl = UrlBuilder.FormatRestApiUrl(ONE_FILE, requestOptions, projectKey, repositorySlug, path);
             File response = await _httpWorker.GetAsync<File>(requestUrl);
+
+            return response;
+        }
+
+        public async Task<ResponseWrapper<UserPermission>> GetUserPermissions(string projectKey, string repositorySlug, RequestOptions requestOptions = null)
+        {
+            string requestUrl = UrlBuilder.FormatRestApiUrl(USER_PERMISSIONS, requestOptions, projectKey, repositorySlug);
+
+            ResponseWrapper<UserPermission> response = await _httpWorker.GetAsync<ResponseWrapper<UserPermission>>(requestUrl);
+
+            return response;
+        }
+
+        public async Task<ResponseWrapper<GroupPermission>> GetGroupPermissions(string projectKey, string repositorySlug, RequestOptions requestOptions = null)
+        {
+            string requestUrl = UrlBuilder.FormatRestApiUrl(GROUP_PERMISSIONS, requestOptions, projectKey, repositorySlug);
+
+            ResponseWrapper<GroupPermission> response = await _httpWorker.GetAsync<ResponseWrapper<GroupPermission>>(requestUrl);
+
+            return response;
+        }
+
+        public async Task<ResponseWrapper<Branch>> GetBranches(string projectKey, string repositorySlug, RequestOptions requestOptions = null)
+        {
+            string requestUrl = UrlBuilder.FormatRestApiUrl(BRANCHES, requestOptions, projectKey, repositorySlug);
+
+            ResponseWrapper<Branch> response = await _httpWorker.GetAsync<ResponseWrapper<Branch>>(requestUrl);
 
             return response;
         }

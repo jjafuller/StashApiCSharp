@@ -7,8 +7,8 @@ namespace Atlassian.Stash.Api.Api
 {
     public class Projects
     {
-        private const string MANY_PROJECTS = "/rest/api/1.0/projects";
-        private const string ONE_PROJECT = "/rest/api/1.0/projects/{0}";
+        private const string MANY_PROJECTS = "rest/api/1.0/projects";
+        private const string ONE_PROJECT = "rest/api/1.0/projects/{0}";
 
         private HttpCommunicationWorker _httpWorker;
 

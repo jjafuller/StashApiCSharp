@@ -7,9 +7,9 @@ namespace Atlassian.Stash.Api.Api
 {
     public class Branches
     {
-        private const string MANY_BRANCHES = "/rest/api/1.0/projects/{0}/repos/{1}/branches";
-        private const string MANAGE_BRANCHES = "/rest/branch-utils/1.0/projects/{0}/repos/{1}/branches";
-        private const string BRANCHES_FOR_COMMIT = "/rest/branch-utils/1.0/projects/{0}/repos/{1}/branches/info/{2}";
+        private const string MANY_BRANCHES = "rest/api/1.0/projects/{0}/repos/{1}/branches";
+        private const string MANAGE_BRANCHES = "rest/branch-utils/1.0/projects/{0}/repos/{1}/branches";
+        private const string BRANCHES_FOR_COMMIT = "rest/branch-utils/1.0/projects/{0}/repos/{1}/branches/info/{2}";
 
         private HttpCommunicationWorker _httpWorker;
 
@@ -53,5 +53,8 @@ namespace Atlassian.Stash.Api.Api
 
             await _httpWorker.DeleteAsyncWithJsonContent(requestUrl, branch);
         }
+
+        // branch permissions API
+
     }
 }
