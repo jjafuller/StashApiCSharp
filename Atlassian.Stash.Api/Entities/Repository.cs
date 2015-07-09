@@ -4,6 +4,7 @@ namespace Atlassian.Stash.Api.Entities
 {
     public class Repository
     {
+        [JsonProperty("slug")]
         public string Slug { get; set; }
         public int Id { get; set; }
         [JsonProperty("name")]
@@ -19,6 +20,7 @@ namespace Atlassian.Stash.Api.Entities
         public string CloneUrl { get; set; }
         public Link Link { get; set; }
         public Links Links { get; set; }
+        [JsonProperty("project")]
         public Project Project { get; set; }
     }
 }

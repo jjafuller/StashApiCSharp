@@ -2,6 +2,7 @@
 
 namespace Atlassian.Stash.Api.Entities
 {
+    // todo: Review class, since Create != Get != Delete objects
     public class Branch
     {
         public string Id { get; set; }

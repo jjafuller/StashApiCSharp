@@ -19,11 +19,11 @@ namespace Atlassian.Stash.Api.Api
             _httpWorker = httpWorker;
         }
 
-        public async Task<ResponseWrapper<Commit>> GetAll(string projectKey, string repositorySlug, RequestOptions requestOptions = null)
+        public async Task<ResponseWrapper<Commit>> Get(string projectKey, string repositorySlug, RequestOptions requestOptions = null)
         {
             string requestUrl = UrlBuilder.FormatRestApiUrl(MANY_COMMITS, requestOptions, projectKey, repositorySlug);
 
-            ResponseWrapper<Commit> response = await _httpWorker.GetAsync<ResponseWrapper<Commit>>(requestUrl);
+            ResponseWrapper<Commit> response = await _httpWorker.GetAsync<ResponseWrapper<Commit>>(requestUrl).ConfigureAwait(false);
 
             return response;
         }
@@ -32,7 +32,7 @@ namespace Atlassian.Stash.Api.Api
         {
             string requestUrl = UrlBuilder.FormatRestApiUrl(ONE_COMMIT, null, projectKey, repositorySlug, commitId);
 
-            Commit response = await _httpWorker.GetAsync<Commit>(requestUrl);
+            Commit response = await _httpWorker.GetAsync<Commit>(requestUrl).ConfigureAwait(false);
 
             return response;
         }
@@ -44,9 +44,9 @@ namespace Atlassian.Stash.Api.Api
             if (string.IsNullOrWhiteSpace(sinceCommit))
                 requestUrl = UrlBuilder.FormatRestApiUrl(CHANGES_UNTIL, requestOptions, projectKey, repositorySlug, untilCommit);
             else
-                requestUrl = UrlBuilder.FormatRestApiUrl(CHANGES_UNTIL, requestOptions, projectKey, repositorySlug, untilCommit, sinceCommit);
+                requestUrl = UrlBuilder.FormatRestApiUrl(CHANGES_UNTIL_AND_SINCE, requestOptions, projectKey, repositorySlug, untilCommit, sinceCommit);
 
-            Changes response = await _httpWorker.GetAsync<Changes>(requestUrl);
+            Changes response = await _httpWorker.GetAsync<Changes>(requestUrl).ConfigureAwait(false);
 
             return response;
         }
