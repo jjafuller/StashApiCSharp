@@ -64,6 +64,16 @@ namespace Atlassian.Stash.Api.Workers
             }
         }
 
+        public async Task PostAsync(string requestUrl)
+        {
+            using (HttpClient httpClient = CreateHttpClient())
+            {
+                HttpResponseMessage httpResponse = await httpClient.PostAsync(requestUrl, null).ConfigureAwait(false);
+
+                await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+            }
+        }
+
         public async Task<T> PostAsync<T>(string requestUrl, T data)
         {
             using (HttpClient httpClient = CreateHttpClient())
@@ -80,6 +90,16 @@ namespace Atlassian.Stash.Api.Workers
                 T response = JsonConvert.DeserializeObject<T>(json);
 
                 return response;
+            }
+        }
+
+        public async Task PutAsync(string requestUrl)
+        {
+            using (HttpClient httpClient = CreateHttpClient())
+            {
+                HttpResponseMessage httpResponse = await httpClient.PutAsync(requestUrl, null).ConfigureAwait(false);
+
+                await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
             }
         }
 

@@ -104,6 +104,15 @@ namespace Atlassian.Stash.Api.Api
             return response;
         }
 
+        public async Task SetGroupPermission(string projectKey, string repositorySlug, string permission, string groupName)
+        {
+            string requestUrl = UrlBuilder.FormatRestApiUrl(GROUP_PERMISSIONS, null, projectKey, repositorySlug);
+
+            requestUrl += "?permission=" + permission + "&name=" + groupName;
+
+            await _httpWorker.PutAsync(requestUrl).ConfigureAwait(false);
+        }
+
         public async Task<ResponseWrapper<Branch>> GetBranches(string projectKey, string repositorySlug, RequestOptions requestOptions = null)
         {
             string requestUrl = UrlBuilder.FormatRestApiUrl(BRANCHES, requestOptions, projectKey, repositorySlug);
