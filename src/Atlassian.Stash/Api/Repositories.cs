@@ -14,6 +14,7 @@ namespace Atlassian.Stash.Api
         private const string ONE_TAG = "rest/git/1.0/projects/{0}/repos/{1}/tags/{2}";
         private const string MANY_FILES = "rest/api/1.0/projects/{0}/repos/{1}/files";
         private const string ONE_FILE = "rest/api/1.0/projects/{0}/repos/{1}/browse/{2}";
+        private const string BRANCHES = "rest/api/1.0/projects/{0}/repos/{1}/branches";
         private const string MANY_HOOKS = "rest/api/1.0/projects/{0}/repos/{1}/settings/hooks";
         private const string ONE_HOOK = "rest/api/1.0/projects/{0}/repos/{1}/settings/hooks/{2}";
         private const string HOOK_ENABLE = "rest/api/1.0/projects/{0}/repos/{1}/settings/hooks/{2}/enabled";
@@ -136,6 +137,15 @@ namespace Atlassian.Stash.Api
 
             string requestUrl = UrlBuilder.FormatRestApiUrl(ONE_FILE, false, requestOptions, projectKey, repositorySlug, path);
             File response = await _httpWorker.GetAsync<File>(requestUrl).ConfigureAwait(false);
+
+            return response;
+        }
+
+        public async Task<ResponseWrapper<Branch>> GetBranches(string projectKey, string repositorySlug, RequestOptions requestOptions = null)
+        {
+            string requestUrl = UrlBuilder.FormatRestApiUrl(BRANCHES, requestOptions, projectKey, repositorySlug);
+
+            ResponseWrapper<Branch> response = await _httpWorker.GetAsync<ResponseWrapper<Branch>>(requestUrl);
 
             return response;
         }

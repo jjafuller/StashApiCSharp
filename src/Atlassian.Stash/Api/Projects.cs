@@ -15,6 +15,7 @@ namespace Atlassian.Stash.Api
         private const string REVOKE_USER_PERMISSION = ONE_PROJECT + "/permissions/users?name={1}";
         private const string PERMISSION_GROUPS = ONE_PROJECT + "/permissions/groups";
         private const string PERMISSION_USERS = ONE_PROJECT + "/permissions/users";
+        private const string DEFAULT_PERMISSIONS = "rest/api/1.0/projects/{0}/permissions/{1}/all";
 
         private HttpCommunicationWorker _httpWorker;
 
@@ -95,6 +96,16 @@ namespace Atlassian.Stash.Api
             string requestUrl = UrlBuilder.FormatRestApiUrl(REVOKE_USER_PERMISSION, null, projectKey, user);
 
             await _httpWorker.DeleteAsync(requestUrl).ConfigureAwait(false);
+        }
+
+        public async Task SetDefaultPermission(string projectKey, string permission, bool allow)
+        {
+            string requestUrl = UrlBuilder.FormatRestApiUrl(DEFAULT_PERMISSIONS, null, projectKey, permission);
+
+            requestUrl += "?allow=" + allow.ToString().ToLower();
+
+            // Project response = await _httpWorker.PostAsync<Project>(requestUrl, project).ConfigureAwait(false);
+            await _httpWorker.PostAsync(requestUrl, new Object()).ConfigureAwait(false);
         }
     }
 
