@@ -30,7 +30,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\File.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Fork.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Group.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\GroupPermission.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Hook.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Link.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Links.cs" />
@@ -44,7 +43,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Self.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Tag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\User.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Entities\UserPermission.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DateTimeHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\RequestOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\RequestOptionsForCommits.cs" />
