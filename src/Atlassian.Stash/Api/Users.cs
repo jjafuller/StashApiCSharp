@@ -7,7 +7,7 @@ namespace Atlassian.Stash.Api
 {
     public class Users
     {
-        private const string ADMIN_USERS = "/rest/api/1.0/admin/users";
+        private const string ADMIN_USERS = "rest/api/1.0/admin/users";
         private const string GET_USERS = ADMIN_USERS + "?filter={0}";
         private const string CREATE_USER_SILENT = ADMIN_USERS + "?name={0}&displayName={1}&emailAddress={2}&addToDefaultGroup=false&notify=false&password={3}";
         //private const string CREATE_USER_NOTIFY = ADMIN_USERS + "?name={0}&displayName={1}&emailAddress={2}&addToDefaultGroup=false&notify=true";
