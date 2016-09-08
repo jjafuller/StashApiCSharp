@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Path.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Permission.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Project.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\PublicPermission.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\PullRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Ref.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Repository.cs" />
