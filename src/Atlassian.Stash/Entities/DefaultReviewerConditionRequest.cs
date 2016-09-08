@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Atlassian.Stash.Api.Entities
 {
-    public class DefaultReviewConditionRequest
+    public class DefaultReviewerConditionRequest
     {
         [JsonProperty("sourceMatcher")]
         public DefaultReviewerMatcher SourceMatcher { get; set; }
