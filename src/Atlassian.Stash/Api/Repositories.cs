@@ -3,6 +3,7 @@ using Atlassian.Stash.Helpers;
 using Atlassian.Stash.Workers;
 using System.Threading.Tasks;
 using System;
+using Atlassian.Stash.Api.Entities;
 
 namespace Atlassian.Stash.Api
 {
@@ -23,6 +24,7 @@ namespace Atlassian.Stash.Api
         private const string PERMISSION_GRANT_GROUP = PERMISSION_GROUPS + "?permission={2}&name={3}";
         private const string PERMISSION_USERS = ONE_REPOSITORY + "/permissions/users";
         private const string PERMISSION_REVOKE_USER = PERMISSION_USERS + "?name={2}";
+        private const string PULL_REQUEST_SETTINGS = ONE_REPOSITORY + "/settings/pull-requests";
 
         private HttpCommunicationWorker _httpWorker;
 
@@ -201,6 +203,22 @@ namespace Atlassian.Stash.Api
             string requestUrl = UrlBuilder.FormatRestApiUrl(HOOK_SETTINGS, null, projectKey, repositorySlug, hookKey);
 
             string response = await _httpWorker.PutAsync(requestUrl, settings).ConfigureAwait(false);
+
+            return response;
+        }
+
+        public async Task SetPublic(string projectKey, string repositorySlug, bool isPublic)
+        {
+            string requestUrl = UrlBuilder.FormatRestApiUrl(ONE_REPOSITORY, null, projectKey, repositorySlug);
+
+            await _httpWorker.PutAsync<Object>(requestUrl, new PublicPermission { Public = isPublic }).ConfigureAwait(false);
+        }
+
+        public async Task<PullRequestSettings> SetPullRequestSettings(string projectKey, string repositorySlug, PullRequestSettings settings)
+        {
+            string requestUrl = UrlBuilder.FormatRestApiUrl(PULL_REQUEST_SETTINGS, null, projectKey, repositorySlug);
+
+            PullRequestSettings response = await _httpWorker.PostAsync<PullRequestSettings>(requestUrl, settings, true).ConfigureAwait(false);
 
             return response;
         }
