@@ -29,6 +29,7 @@ namespace Atlassian.Stash
             this.Commits = new Commits(_httpWorker);
             this.PullRequests = new PullRequests(_httpWorker);
             this.Forks = new Forks(_httpWorker);
+            this.DefaultReviewers = new DefaultReviewers(_httpWorker);
         }
 
         public Projects Projects { get; private set; }
@@ -39,6 +40,7 @@ namespace Atlassian.Stash
         public Commits Commits { get; private set; }
         public PullRequests PullRequests { get; private set; }
         public Forks Forks { get; private set; }
+        public DefaultReviewers DefaultReviewers { get; private set; }
 
     }
 }

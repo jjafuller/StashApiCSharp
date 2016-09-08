@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Api\Branches.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\Commits.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\DefaultReviewers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\Forks.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\Groups.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Api\Projects.cs" />
@@ -27,6 +28,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Changes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Clone.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Commit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\DefaultReviewerCondition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\DefaultReviewerConditionRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\DefaultReviewerMatcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\DefaultReviewerMatcherType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\File.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Fork.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\Group.cs" />
